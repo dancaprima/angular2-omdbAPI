@@ -1,0 +1,88 @@
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">OMDB</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+        </ul>
+    </div>
+</nav>
+
+<div *ngIf="isLoading" class="progress">
+    <div class="indeterminate"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <form role="search">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="movietitle" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" (click)="getMovies()">Go!</button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <ul class="collection">
+                <a href="#!" *ngFor="let m of movies.Search" class="collection-item" (click)="select(m)">
+
+                    <h6 class="teal-text text-darken-3">{{m.Title}}</h6>
+                    <p class="thin">{{m.Type}}-{{m.Year}}
+                    </p>
+
+                </a>
+
+            </ul>
+        </div>
+        <div class="col s6">
+
+            <div *ngIf="currentDetail" class="card">
+                <div *ngIf="detailLoading" class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{currentDetail.Poster}}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{currentDetail.Title}}<i class="material-icons right">more_vert</i></span>
+
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{currentDetail.Title}}<i class="material-icons right">close</i></span>
+                    <p class="light">{{currentDetail.Year}}-{{currentDetail.Genre}}-{{currentDetail.Runtime}} </p>
+                    <p>Rated : <span class="light">{{currentDetail.Rated}}</span> </p>
+                    <p>Release : <span class="light">{{currentDetail.Released}}</span> </p>
+                    <p>Writer : <span class="light">{{currentDetail.Writer}}</span> </p>
+                    <p>Actors : <span class="light">{{currentDetail.Actors}}</span> </p>
+                    <p>Plot : <span class="light">{{currentDetail.Plot}}</span> </p>
+                    <p>Language : <span class="light">{{currentDetail.Language}}</span> </p>
+                    <p>Country : <span class="light">{{currentDetail.Country}}</span> </p>
+                    <p>Awards : <span class="light">{{currentDetail.Awards}}</span> </p>
+                    <p>IMDB Rating : <span class="light">{{currentDetail.imdbRating}}</span> </p>
+                    <p>Short Review : <span class="light">{{currentDetail.tomatoConsensus}}</span> </p>
+                    <p>Box Office : <span class="light">{{currentDetail.BoxOffice}}</span> </p>
+                    <p>Production : <span class="light">{{currentDetail.Production}}</span> </p>
+                    <p>Website : <span class="light">{{currentDetail.Website}}</span> </p>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
